@@ -1,0 +1,25 @@
+# terraform.tfvars.example
+# Copy to terraform.tfvars and fill in real values.
+# WARNING: terraform.tfvars is gitignored — never commit it.
+# Prefer using .env with TF_VAR_* exports instead.
+
+# ── Azure ─────────────────────────────────────────────────────────────────────
+resource_group_name = "rg-zero-trust-gateway"
+location            = "eastus"
+key_vault_name      = "kv-ztgw-demo-UNIQUE"   # Must be globally unique (3-24 chars)
+deploy_bastion      = false                    # true = +~$5/day, enables SSH via Bastion
+
+# ── Snowflake ─────────────────────────────────────────────────────────────────
+snowflake_account        = "xy12345.us-east-1"
+snowflake_admin_user     = "SYSADMIN"
+snowflake_admin_password = "YourAdminPassword123!"
+snowflake_svc_user       = "GATEWAY_SVC"
+snowflake_svc_password   = "GenerateStrongPassword456!"
+
+# ── Cloudflare ────────────────────────────────────────────────────────────────
+cloudflare_api_token  = "cf_api_token_here"
+cloudflare_account_id = "abcdef1234567890abcdef1234567890"
+cloudflare_zone_id    = "abcdef1234567890abcdef1234567890"
+tunnel_hostname       = "gateway.yourdomain.com"
+allowed_email         = "you@yourdomain.com"
+enable_gateway_egress = false   # Requires Cloudflare Gateway plan with dedicated egress

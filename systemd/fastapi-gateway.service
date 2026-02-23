@@ -1,0 +1,20 @@
+[Unit]
+Description=Zero Trust Gateway FastAPI Application
+After=network-online.target cloud-final.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=gateway
+Group=gateway
+WorkingDirectory=/opt/gateway
+EnvironmentFile=/etc/environment
+ExecStart=/opt/gateway/.venv/bin/uvicorn main:app --host 127.0.0.1 --port 8000 --workers 2
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=fastapi-gateway
+
+[Install]
+WantedBy=multi-user.target

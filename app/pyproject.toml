@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "zero-trust-gateway"
+version = "1.0.0"
+description = "Zero Trust Data Gateway — FastAPI on Linux VM behind Cloudflare Access"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.109",
+    "uvicorn[standard]>=0.27",
+    "snowflake-connector-python>=3.6",
+    "azure-identity>=1.15",
+    "azure-keyvault-secrets>=4.7",
+    "pydantic>=2.0",
+    "pydantic-settings>=2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "httpx",        # for TestClient
+    "pytest",
+    "pytest-asyncio",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
